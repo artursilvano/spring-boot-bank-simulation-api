@@ -1,0 +1,7 @@
+{
+  "error": "Bad Request",
+  "message": "The e-mail is not valid, The field 'email' is required, The field 'firstName' is required, The field 'lastName' is required, The field 'password' is required",
+  "path": "/v1/users",
+  "status": 400,
+  "timestamp": "2025-08-17T15:38:35.8086519+01:00"
+}

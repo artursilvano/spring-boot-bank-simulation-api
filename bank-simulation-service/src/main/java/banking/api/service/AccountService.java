@@ -1,34 +1,62 @@
 package banking.api.service;
 
 import banking.api.domain.Account;
-import banking.api.mapper.AccountMapper;
+import banking.api.domain.Transaction;
+import banking.api.exception.EmailAlreadyExistsException;
+import banking.api.exception.NotFoundException;
 import banking.api.repository.AccountRepository;
-import banking.api.request.AccountPostRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class AccountService {
-    @Qualifier("accountMapper")
-    private  final AccountMapper mapper;
+
     private final AccountRepository repository;
 
 
-    public Account findAccount(UUID accountId) {
 
-        return repository.findById(accountId).orElse(null);
-
+    public Account getAccountByEmail(String email) {
+        return repository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("Account not found"));
+    }
+    public Account getAccountByAccountNumber(String accountNumber) {
+        return repository.findByAccountNumber(accountNumber)
+                .orElseThrow(() -> new NotFoundException("Account not found"));
     }
 
-    public Account createAccount(AccountPostRequest accountPostRequest) {
 
-        var account = mapper.toAccount(accountPostRequest);
+    public Account createAccount(Account account) {
+        assertEmailDoesNotExists(account.getEmail());
         return repository.save(account);
-
     }
 
+
+
+
+    public void assertEmailDoesNotExists(String email) {
+        repository.findByEmail(email)
+                .ifPresent(this::throwEmailExistsException);
+    }
+    private void throwEmailExistsException(Account account) {
+        throw new EmailAlreadyExistsException("E-mail %s already exists".formatted(account.getEmail()));
+    }
+
+
+    public boolean fromAccountHasEnoughFundsForTransaction(String fromAccountNumber, double amount) {
+        var fromAccount = getAccountByAccountNumber(fromAccountNumber);
+        return (fromAccount.getBalance() >= amount);
+    }
+
+
+    public void makeTransaction(Transaction transaction) {
+        var fromAccount = this.getAccountByAccountNumber(transaction.getFromAccountNumber());
+        var toAccount = this.getAccountByAccountNumber(transaction.getToAccountNumber());
+
+        fromAccount.setBalance(fromAccount.getBalance() - transaction.getAmount());
+        toAccount.setBalance(toAccount.getBalance() + transaction.getAmount());
+
+        repository.save(fromAccount);
+        repository.save(toAccount);
+    }
 }

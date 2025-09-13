@@ -1,0 +1,3 @@
+insert into account (account_id ,account_number, owner_name, email, balance, password) values ('1' ,'111111111', 'accountOne', 'emailOne@gmail.com', 1.0, '{bcrypt}$2a$10$0yPaTu36qTuDant0bIXNA.UxSYDiVX37uWkvF6OY.Rub371e.qvbK');
+insert into account (account_id ,account_number, owner_name, email, balance, password) values ('2' ,'222222222', 'accountTwo', 'emailTwo@gmail.com', 2.0, '{bcrypt}$2a$10$0yPaTu36qTuDant0bIXNA.UxSYDiVX37uWkvF6OY.Rub371e.qvbK');
+insert into account (account_id ,account_number, owner_name, email, balance, password) values ('3' ,'333333333', 'accountThree', 'emailThree@gmail.com', 3.0, '{bcrypt}$2a$10$0yPaTu36qTuDant0bIXNA.UxSYDiVX37uWkvF6OY.Rub371e.qvbK')

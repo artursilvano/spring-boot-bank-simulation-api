@@ -1,0 +1,1 @@
+insert into account (account_id ,account_number, owner_name, email, balance, password) values ('123' ,'123456789', 'ownerName', 'ownerEmail', 0.0, '{bcrypt}$2a$10$0yPaTu36qTuDant0bIXNA.UxSYDiVX37uWkvF6OY.Rub371e.qvbK')

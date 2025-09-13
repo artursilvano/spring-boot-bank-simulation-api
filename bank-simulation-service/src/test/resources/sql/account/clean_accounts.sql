@@ -1,0 +1,1 @@
+delete from account where 1=1
