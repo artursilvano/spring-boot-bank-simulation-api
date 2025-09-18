@@ -45,18 +45,37 @@ public class AccountService {
 
     public boolean fromAccountHasEnoughFundsForTransaction(String fromAccountNumber, double amount) {
         var fromAccount = getAccountByAccountNumber(fromAccountNumber);
-        return (fromAccount.getBalance() >= amount);
+        return fromAccount.getBalance() >= amount;
     }
 
 
     public void makeTransaction(Transaction transaction) {
-        var fromAccount = this.getAccountByAccountNumber(transaction.getFromAccountNumber());
-        var toAccount = this.getAccountByAccountNumber(transaction.getToAccountNumber());
+        if (transaction.getFromAccountNumber() == null && transaction.getToAccountNumber() == null) {
+            throw new NotFoundException("Not Found Account");
+        }
 
-        fromAccount.setBalance(fromAccount.getBalance() - transaction.getAmount());
-        toAccount.setBalance(toAccount.getBalance() + transaction.getAmount());
+        // If it's not a deposit
+        if (transaction.getFromAccountNumber() != null) {
+            var fromAccount = this.getAccountByAccountNumber(transaction.getFromAccountNumber());
 
-        repository.save(fromAccount);
-        repository.save(toAccount);
+            fromAccount.setBalance(fromAccount.getBalance() - transaction.getAmount());
+
+            repository.save(fromAccount);
+
+        }
+
+        // If it's not a withdrawal
+        if (transaction.getToAccountNumber() != null) {
+
+            var toAccount = this.getAccountByAccountNumber(transaction.getToAccountNumber());
+
+            toAccount.setBalance(toAccount.getBalance() + transaction.getAmount());
+
+            repository.save(toAccount);
+
+        }
+
+
+
     }
 }

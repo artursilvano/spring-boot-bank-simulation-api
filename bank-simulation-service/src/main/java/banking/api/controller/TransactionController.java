@@ -1,6 +1,5 @@
 package banking.api.controller;
 
-import banking.api.domain.Account;
 import banking.api.domain.Transaction;
 import banking.api.mapper.TransactionMapper;
 import banking.api.request.TransactionPostRequest;
@@ -10,7 +9,6 @@ import banking.api.service.TransactionService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/v1/transaction")
 @Slf4j
