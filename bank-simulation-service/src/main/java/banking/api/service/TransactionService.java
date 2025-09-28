@@ -38,6 +38,8 @@ public class TransactionService {
 
     public void makeDeposit(Transaction transaction) {
         accountService.makeTransaction(transaction);
+
+        repository.save(transaction);
     }
 
     public void makeWithdraw(Transaction transaction) {
@@ -47,6 +49,8 @@ public class TransactionService {
         );
 
         accountService.makeTransaction(transaction);
+
+        repository.save(transaction);
     }
 
 

@@ -43,10 +43,14 @@ public class AccountService {
     }
 
 
+
     public boolean fromAccountHasEnoughFundsForTransaction(String fromAccountNumber, double amount) {
         var fromAccount = getAccountByAccountNumber(fromAccountNumber);
         return fromAccount.getBalance() >= amount;
     }
+
+
+
 
 
     public void makeTransaction(Transaction transaction) {

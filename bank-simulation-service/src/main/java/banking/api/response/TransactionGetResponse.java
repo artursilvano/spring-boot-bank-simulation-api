@@ -10,6 +10,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TransactionGetResponse {
+    private String fromAccountNumber;
     private String toAccountNumber;
     private String amount;
 }
