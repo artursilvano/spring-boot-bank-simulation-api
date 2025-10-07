@@ -27,7 +27,7 @@ This project is a **Bank Simulation API** built with **Spring Boot**, providing 
 
 - Java 21+
 - Maven
-- Docker (make sure Docker Desktop or Docker Engine is installed and running)
+- Docker
 
 ### Installation & Running
 
