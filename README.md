@@ -55,6 +55,7 @@ This project is a **Bank Simulation API** built with **Spring Boot**, providing 
 | Method | Endpoint                       | Description                        |
 |--------|--------------------------------|------------------------------------|
 | POST   | `v1/account`                   | Create a new account               |
+| POST   | `v1/auth`                      | Create a new JWT to use the API    |
 | GET    | `v1/account`                   | Get details of logged account      |
 | GET    | `v1/accounts/{accountNumber}`  | Get details of account             |
 | POST   | `v1/atm/deposit`               | Deposit funds                      |
