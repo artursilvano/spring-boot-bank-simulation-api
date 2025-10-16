@@ -7,10 +7,7 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class TransactionPostRequest {
-    @NotBlank(message = "The field 'toAccountNumber' is required")
-    private String toAccountNumber;
-
+public class AtmWithdrawRequest {
     @NotEmpty
     @NotBlank(message = "The field 'amount' is required")
     private double amount;

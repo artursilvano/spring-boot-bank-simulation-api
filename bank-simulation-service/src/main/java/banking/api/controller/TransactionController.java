@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -39,13 +40,16 @@ public class TransactionController {
     }
 
     @PostMapping
-    public ResponseEntity<TransactionPostResponse> makeTransaction(Principal principal, @RequestBody TransactionPostRequest transactionRequest) {
+    public ResponseEntity<TransactionPostResponse> makeTransaction(Principal principal,
+                                                                   @RequestBody TransactionPostRequest transactionRequest) {
         var fromAccountNumber = service.getAccountByEmail(principal.getName()).getAccountNumber();
 
         var transaction = Transaction.builder()
                 .fromAccountNumber(fromAccountNumber)
                 .toAccountNumber(transactionRequest.getToAccountNumber())
                 .amount(transactionRequest.getAmount())
+                .description(transactionRequest.getDescription())
+                .createdAt(LocalDateTime.now().toString())
                 .build();
 
         var result = service.makeTransaction(transaction);

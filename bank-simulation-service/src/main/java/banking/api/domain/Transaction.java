@@ -18,12 +18,18 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID transactionId;
 
-    @Column
+    @Column(nullable = true)
     private String fromAccountNumber;
 
-    @Column
+    @Column(nullable = true)
     private String toAccountNumber;
 
     @Column(nullable = false)
     private double amount;
+
+    @Column(nullable = true)
+    private String description;
+
+    @Column(nullable = false)
+    private String createdAt;
 }

@@ -39,6 +39,7 @@ public class TransactionService {
     public void makeDeposit(Transaction transaction) {
         accountService.makeTransaction(transaction);
 
+        transaction.setFromAccountNumber("ATM");
         repository.save(transaction);
     }
 
@@ -50,6 +51,7 @@ public class TransactionService {
 
         accountService.makeTransaction(transaction);
 
+        transaction.setToAccountNumber("ATM");
         repository.save(transaction);
     }
 

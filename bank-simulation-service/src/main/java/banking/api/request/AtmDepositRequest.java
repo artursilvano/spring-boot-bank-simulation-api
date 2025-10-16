@@ -11,4 +11,6 @@ public class AtmDepositRequest {
     @NotEmpty
     @NotBlank(message = "The field 'amount' is required")
     private double amount;
+
+    private String description;
 }
