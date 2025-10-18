@@ -34,11 +34,20 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
+		<springdoc-openapi-starter-webmvc-ui.version>2.8.9</springdoc-openapi-starter-webmvc-ui.version>
 	</properties>
 
 	<modules>
 		<module>bank-simulation-service</module>
 	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>${springdoc-openapi-starter-webmvc-ui.version}</version>
+		</dependency>
+	</dependencies>
 
 
 	<build>
